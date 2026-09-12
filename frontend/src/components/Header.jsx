@@ -65,20 +65,21 @@ function Header() {
           }}
         />
         <button
-          type="submit"
-          style={{
-            padding: '8px 16px',
-            borderRadius: '6px',
-            border: 'none',
-            background: '#e50914',
-            color: '#fff',
-            fontSize: '14px',
-            fontWeight: '600',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          Search
-        </button>
+  type="submit"
+  className="btn-primary"
+  style={{
+    padding: '8px 16px',
+    borderRadius: '6px',
+    border: 'none',
+    background: '#e50914',
+    color: '#fff',
+    fontSize: '14px',
+    fontWeight: '600',
+    whiteSpace: 'nowrap',
+  }}
+>
+  Search
+</button>
       </form>
 
       <nav className="desktop-nav" style={{ display: 'flex', gap: '24px' }}>

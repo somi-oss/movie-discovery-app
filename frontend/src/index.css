@@ -41,3 +41,50 @@ button {
     padding-bottom: 64px; /* space for fixed bottom nav so content isn't hidden behind it */
   }
 }
+
+.movie-card-poster {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card-poster:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.wishlist-heart-btn {
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.wishlist-heart-btn:hover {
+  transform: scale(1.15);
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.btn-primary {
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #e50914;
+  outline-offset: 2px;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}

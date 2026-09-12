@@ -34,7 +34,17 @@ function MovieDetail() {
   }, [id]);
 
   if (loading) return <p style={{ padding: '32px' }}>Loading...</p>;
-  if (error) return <p style={{ padding: '32px', color: '#ff6b6b' }}>{error}</p>;
+ if (error) {
+  return (
+    <div style={{ textAlign: 'center', padding: '80px 32px', color: '#999' }}>
+      <div style={{ fontSize: '40px', marginBottom: '12px' }}>⚠️</div>
+      <p style={{ fontSize: '16px', color: '#ff6b6b' }}>{error}</p>
+      <Link to="/" style={{ color: '#e50914', marginTop: '8px', display: 'inline-block' }}>
+        ← Back to Browse
+      </Link>
+    </div>
+  );
+}
   if (!movie) return null;
 
   const wishlisted = isWishlisted(movie.id);
@@ -92,20 +102,21 @@ function MovieDetail() {
           )}
 
           <button
-            onClick={() => toggleWishlist(movie)}
-            style={{
-              marginTop: '20px',
-              padding: '10px 24px',
-              borderRadius: '6px',
-              border: 'none',
-              background: wishlisted ? '#ff4757' : '#e50914',
-              color: '#fff',
-              fontSize: '15px',
-              fontWeight: '600',
-            }}
-          >
-            {wishlisted ? '♥ Remove from Wishlist' : '♡ Add to Wishlist'}
-          </button>
+  onClick={() => toggleWishlist(movie)}
+  className="btn-primary"
+  style={{
+    marginTop: '20px',
+    padding: '10px 24px',
+    borderRadius: '6px',
+    border: 'none',
+    background: wishlisted ? '#ff4757' : '#e50914',
+    color: '#fff',
+    fontSize: '15px',
+    fontWeight: '600',
+  }}
+>
+  {wishlisted ? '♥ Remove from Wishlist' : '♡ Add to Wishlist'}
+</button>
 
           <p style={{ marginTop: '24px', lineHeight: '1.6', maxWidth: '700px', color: '#ccc' }}>
             {movie.overview || 'No description available.'}

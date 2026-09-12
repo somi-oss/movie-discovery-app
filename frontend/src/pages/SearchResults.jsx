@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from '../services/movieService';
 import MovieCard from '../components/MovieCard';
+import SkeletonCard from '../components/SkeletonCard';
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -23,16 +24,50 @@ function SearchResults() {
       .finally(() => setLoading(false));
   }, [query]);
 
-  if (loading) return <p style={{ padding: '32px' }}>Searching...</p>;
-  if (error) return <p style={{ padding: '32px', color: '#ff6b6b' }}>{error}</p>;
+ if (loading) {
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+        gap: '24px',
+        padding: '32px',
+      }}
+    >
+      {Array.from({ length: 10 }).map((_, i) => (
+        <SkeletonCard key={i} />
+      ))}
+    </div>
+  );
+}
+  if (error) {
+  return (
+    <div style={{ textAlign: 'center', padding: '80px 32px', color: '#999' }}>
+      <div style={{ fontSize: '40px', marginBottom: '12px' }}>⚠️</div>
+      <p style={{ fontSize: '16px', color: '#ff6b6b', marginBottom: '8px' }}>{error}</p>
+      <p style={{ fontSize: '14px' }}>Please try your search again.</p>
+    </div>
+  );
+}
 
-  if (!query.trim()) {
-    return <p style={{ padding: '32px', color: '#999' }}>Type something to search for movies.</p>;
-  }
+if (!query.trim()) {
+  return (
+    <div style={{ textAlign: 'center', padding: '80px 32px', color: '#999' }}>
+      <div style={{ fontSize: '40px', marginBottom: '12px' }}>🔍</div>
+      <p style={{ fontSize: '16px' }}>Type something to search for movies.</p>
+    </div>
+  );
+}
 
-  if (movies.length === 0) {
-    return <p style={{ padding: '32px', color: '#999' }}>No results found for "{query}".</p>;
-  }
+if (movies.length === 0) {
+  return (
+    <div style={{ textAlign: 'center', padding: '80px 32px', color: '#999' }}>
+      <div style={{ fontSize: '40px', marginBottom: '12px' }}>😕</div>
+      <p style={{ fontSize: '16px' }}>No results found for "{query}".</p>
+      <p style={{ fontSize: '14px', marginTop: '4px' }}>Try a different search term.</p>
+    </div>
+  );
+}
 
   return (
     <div style={{ padding: '32px' }}>

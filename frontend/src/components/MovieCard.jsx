@@ -17,10 +17,12 @@ function MovieCard({ movie }) {
           <img
             src={movie.posterUrl}
             alt={movie.title}
+            className="movie-card-poster"
             style={{ width: '100%', aspectRatio: '2/3', objectFit: 'cover', borderRadius: '8px' }}
           />
         ) : (
           <div
+            className="movie-card-poster"
             style={{
               width: '100%',
               aspectRatio: '2/3',
@@ -55,6 +57,7 @@ function MovieCard({ movie }) {
 
       <button
         onClick={handleHeartClick}
+        className="wishlist-heart-btn"
         aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
         style={{
           position: 'absolute',
