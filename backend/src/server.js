@@ -7,6 +7,8 @@ app.use(cors());
 app.use(express.json());
 const moviesRouter = require('./routes/movies');
 app.use('/api/movies', moviesRouter);
+const wishlistRouter = require('./routes/wishlist');
+app.use('/api/wishlist', wishlistRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Movie Discovery API is running' });
