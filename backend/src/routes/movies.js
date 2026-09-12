@@ -78,6 +78,20 @@ router.get('/genres', async (req, res) => {
   }
 });
 
+router.get('/:id/similar', async (req, res) => {
+  try {
+    const data = await tmdb.getSimilarMovies(req.params.id);
+    res.json({
+      page: data.page,
+      totalPages: data.total_pages,
+      results: data.results.map(normalizeMovie),
+    });
+  } catch (error) {
+    console.error('Error fetching similar movies:', error.message);
+    res.status(502).json({ error: 'Failed to fetch similar movies.' });
+  }
+});
+
 router.get('/:id', async (req, res) => {
   try {
     const movie = await tmdb.getMovieDetails(req.params.id);

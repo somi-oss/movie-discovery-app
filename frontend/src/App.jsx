@@ -1,17 +1,24 @@
-import { useEffect, useState } from 'react';
-import { getBrowseMovies } from './services/movieService';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import BottomNav from './components/BottomNav';
+import Browse from './pages/Browse';
+import MovieDetail from './pages/MovieDetail';
+import Wishlist from './pages/Wishlist';
+import SearchResults from './pages/SearchResults';
 
 function App() {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    getBrowseMovies().then((data) => setMovies(data.results));
-  }, []);
-
   return (
     <div>
-      <h1>Movie Discovery App</h1>
-      <p>Loaded {movies.length} movies</p>
+      <Header />
+      <main style={{ maxWidth: '1400px', margin: '0 auto' }}>
+        <Routes>
+          <Route path="/" element={<Browse />} />
+          <Route path="/movie/:id" element={<MovieDetail />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/search" element={<SearchResults />} />
+        </Routes>
+      </main>
+      <BottomNav />
     </div>
   );
 }

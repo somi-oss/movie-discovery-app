@@ -131,10 +131,31 @@ async function getGenres() {
   return data;
 }
 
+async function getSimilarMovies(movieId, page = 1) {
+  const cacheKey = `similar:${movieId}:${page}`;
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    console.log('CACHE HIT:', cacheKey);
+    return cached;
+  }
+  console.log('CACHE MISS:', cacheKey);
+
+  const data = await requestWithRetry(async () => {
+    const response = await tmdbClient.get(`/movie/${movieId}/similar`, {
+      params: { language: 'en-US', page },
+    });
+    return response.data;
+  });
+
+  cache.set(cacheKey, data);
+  return data;
+}
+
 module.exports = {
   getPopularMovies,
   getMovieDetails,
   searchMovies,
   discoverMovies,
   getGenres,
+  getSimilarMovies,
 };

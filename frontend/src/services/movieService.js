@@ -24,3 +24,8 @@ export const getMovieDetails = async (id) => {
   const { data } = await api.get(`/movies/${id}`);
   return data;
 };
+
+export const getSimilarMovies = async (id) => {
+  const { data } = await api.get(`/movies/${id}/similar`);
+  return data;
+};
