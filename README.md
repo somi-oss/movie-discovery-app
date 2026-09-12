@@ -78,7 +78,6 @@ On the frontend, I structured the app around React Router with distinct pages (B
 
 - No automated tests (unit/integration) were written given the assignment's time scope.
 - Basic input validation exists on the wishlist API (checks required fields), but doesn't strictly validate types (e.g., a malformed `movieId`).
-- Rapid genre/sort changes could theoretically cause a race condition where an older, slower request resolves after a newer one and overwrites its results — not yet guarded against.
 - No dedicated handling for TMDB entries with entirely missing metadata beyond basic fallback UI (e.g., "No poster", "No description available").
 - Visual design is functional but intentionally minimal — focus was placed on architecture, data flow, and handling the specified edge cases over visual polish.
 
@@ -89,7 +88,6 @@ I used Claude extensively throughout this project — for scaffolding boilerplat
 ## What I'd Improve With More Time
 
 - Add automated tests for the backend routes (especially TMDB normalization and wishlist CRUD).
-- Add debounced/guarded filter changes to eliminate the race-condition risk on rapid genre/sort switching.
 - Build a more polished visual design system (consistent spacing scale, custom typography, hover/transition states, skeleton loaders instead of plain "Loading..." text).
 - Add stricter backend input validation (e.g., using a library like Zod) on all routes.
 - Add infinite scroll as an alternative to "Load More," with proper scroll-position restoration when navigating back from a movie detail page.
