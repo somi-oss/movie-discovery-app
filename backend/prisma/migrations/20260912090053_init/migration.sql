@@ -1,12 +1,14 @@
 -- CreateTable
 CREATE TABLE "Wishlist" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "movieId" INTEGER NOT NULL,
     "title" TEXT NOT NULL,
     "posterPath" TEXT,
     "releaseYear" TEXT,
-    "rating" REAL,
-    "addedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "rating" DOUBLE PRECISION,
+    "addedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Wishlist_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
